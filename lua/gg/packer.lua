@@ -40,4 +40,7 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
   use('nvim-treesitter/playground') -- `TSPlaygroundToggle` -> (view AST).
 
+  use('ThePrimeagen/harpoon')
+
+
 end) -- `:so` Shoutout! (source the file) -> `:PackerSync`
