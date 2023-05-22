@@ -27,4 +27,3 @@ vim.keymap.set("n", "<leader>zZ", function()
     vim.opt.colorcolumn = "0"
     ColorMyPencils()
 end)
-

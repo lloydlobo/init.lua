@@ -16,6 +16,13 @@ lsp.nvim_workspace()
 -- When you don't have mason.nvim installed. You'll need to list the servers installed in your system.
 lsp.setup_servers({ 'tsserver', 'eslint', 'lua_ls', 'rust_analyzer' })
 
+-- NOTE: Adopted primes lua-language-server to lua_ls. Not sure if the options are same.
+-- Fix Undefined global 'vim'
+-- Uncomment the wholelot if it doesn'twork.
+-- lsp.configure('lua_ls', {
+--     settings = { Lua = { diagnostics = { globals = { 'vim' } } } }
+-- })
+
 -- Run `:LspInstall` and select the option Mason presents.
 -- To make sure lua_ls can detect the "root directory" of our config we need to create a file
 -- called `.luarc.json` in the Neovim config folder. This file can be empty, it just need to exists.
@@ -73,24 +80,27 @@ cmp.setup({
     -- NOTE: To add more keybindings I recommend you use nvim-cmp directly.
     mapping = {
         -- `Enter` key to confirm completion. If you want to confirm without selecting the item, use this.
-        ['C-y'] = cmp.mapping.confirm({ select = true }), -- default: <CR> = ... {select = false}
-        -- Enter will only confirm the selected item. You need to select the item before pressing enter.
-
-        -- Ctrl+Space to trigger completion menu
-        ['<C-Space>'] = cmp.mapping.complete(),
-
-        -- Navigate between snippet placeholder
-        ['<C-n>'] = cmp_action.luasnip_jump_forward(),  -- default: '<C-f>'
-        ['<C-p>'] = cmp_action.luasnip_jump_backward(), -- default: '<C-b>'
+        ['C-y'] = cmp.mapping.confirm({ select = true }), -- default: <CR> = ... {select = false} Enter will only confirm the selected item. You need to select the item before pressing enter.
+        ['<C-Space>'] = cmp.mapping.complete(),           -- Ctrl+Space to trigger completion menu
+        ['<C-n>'] = cmp_action.luasnip_jump_forward(),    -- default: '<C-f>' Navigate between snippet placeholder
+        ['<C-p>'] = cmp_action.luasnip_jump_backward(),   -- default: '<C-b>'
     }
 })
 
+-- TODO: What does Tab do?
 --local cmp_mappings = lsp.defaults.cmp_mappings({
 --  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
 --  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
 --  ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- `Ctrl+y` key to confirm completion
 --  ["<C-Space>"] = cmp.mapping.complete(), -- Ctrl+Space to trigger completion menu
 --})
+--cmp_mappings['<Tab>'] = nil
+--cmp_mappings['<S-Tab>'] = nil
+--
+--lsp.setup_nvim_cmp({
+--  mapping = cmp_mappings
+--})
+
 
 vim.diagnostic.config({
     virtual_text = true
