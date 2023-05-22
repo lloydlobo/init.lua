@@ -1,5 +1,6 @@
 -- TODO: require("gg.set")
 require("gg.remap")
+require("gg.set") -- Adds sets to make editor experience better. e.g. automatic linenumbers etc.
 
 -- print("hello from gg") -- debug.
 
