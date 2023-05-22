@@ -1,20 +1,20 @@
 --
--- LSP 
+-- LSP
 --
 
 -- https://github.com/VonHeikemen/lsp-zero.nvim#usage
 local lsp = require('lsp-zero').preset({})
 
 -- NOTE: `.ensure_installed()` will be removed. Use the module mason-lspconfig to install LSP servers.
-lsp.ensure_installed({ 'tsserver', 'eslint', 'lua_ls', 'rust_analyzer',})
+lsp.ensure_installed({ 'tsserver', 'eslint', 'lua_ls', 'rust_analyzer', })
 
 -- Fix Undefined global 'vim'.
 lsp.nvim_workspace()
 
--- Manual setup. 
+-- Manual setup.
 -- NOTE: if you use NixOS don't install mason.nvim.
 -- When you don't have mason.nvim installed. You'll need to list the servers installed in your system.
-lsp.setup_servers({'tsserver', 'eslint', 'lua_ls', 'rust_analyzer'})
+lsp.setup_servers({ 'tsserver', 'eslint', 'lua_ls', 'rust_analyzer' })
 
 -- Run `:LspInstall` and select the option Mason presents.
 -- To make sure lua_ls can detect the "root directory" of our config we need to create a file
@@ -27,35 +27,34 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 -- Defines the sign icons that appear in the gutter.
 lsp.set_sign_icons({
-  error = 'E', -- ✘
-  warn = 'W', -- ▲
-  hint = 'H', -- ⚑
-  info = 'I' -- »
+    error = 'E', -- ✘
+    warn = 'W',  -- ▲
+    hint = 'H',  -- ⚑
+    info = 'I',  -- »
 })
 
 -- Attaches on every single buffer that has a lsp associated with it.
 -- Remap only works on the current buffer you are on.
 -- If something isn't a buffer, vim will still try vim's method to jump on definition without the need of LSP.
 lsp.on_attach(function(client, bufnr)
- local opts = {buffer = bufnr, remap = false}
+    local opts = { buffer = bufnr, remap = false }
 
-  -- lsp.default_keymaps({buffer = bufnr})
-  -- OR
-  -- Custom mappings: ... [Quickfix List] References.
-  vim.keymap.set("n", "gd", function () vim.lsp.buf.definition() end, opts) -- [g]o to [d]efinition.
-  vim.keymap.set("n", "K", function () vim.lsp.buf.hover() end, opts) -- hover symbol overview under cursor (Shift+k).
-  vim.keymap.set("n", "<leader>vws", function () vim.lsp.buf.workspace_symbol()end, opts) -- [v]im [w]orkspace [s]ymbol.
-  vim.keymap.set("n", "<leader>vd", function () vim.diagnostic.open_float() end, opts) -- [v]im [d]iagnostic.
-  vim.keymap.set("n", "[d", function () vim.diagnostic.goto_next() end, opts) -- go to next [d]iagnostic.
-  vim.keymap.set("n", "]d", function () vim.diagnostic.goto_prev() end, opts) -- go to previous [d]iagnostic.
-  vim.keymap.set("n", "<leader>vca", function () vim.lsp.buf.code_action() end, opts) -- [v]im [c]ode [a]ction.
-  vim.keymap.set("n", "<leader>vrr", function () vim.lsp.buf.references() end, opts) -- [v]im [r]eferences [r].
-  vim.keymap.set("n", "<leader>vrn", function () vim.lsp.buf.rename() end, opts) -- [v]im [r]ename [n]ame.
-  -- FIXME: Doesn't work. -- See [Reference](lsp.txt)
-  -- signature_help()                                *vim.lsp.buf.signature_help()*
-  --     Displays signature information about the symbol under the cursor in a floating window.
-  vim.keymap.set("i", "<C-h>", function () vim.lsp.buf.signature_help() end, opts)
-
+    -- lsp.default_keymaps({buffer = bufnr})
+    -- OR
+    -- Custom mappings: ... [Quickfix List] References.
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)                -- [g]o to [d]efinition.
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)                      -- hover symbol overview under cursor (Shift+k).
+    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts) -- [v]im [w]orkspace [s]ymbol.
+    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)     -- [v]im [d]iagnostic.
+    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)              -- go to next [d]iagnostic.
+    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)              -- go to previous [d]iagnostic.
+    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)      -- [v]im [c]ode [a]ction.
+    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)       -- [v]im [r]eferences [r].
+    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)           -- [v]im [r]ename [n]ame.
+    -- FIXME: Doesn't work. -- See [Reference](lsp.txt)
+    -- signature_help()                                *vim.lsp.buf.signature_help()*
+    --     Displays signature information about the symbol under the cursor in a floating window.
+    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp.setup()
@@ -67,23 +66,23 @@ lsp.setup()
 -- NOTE: You need to setup `cmp` after `lsp-zero`.
 local cmp = require('cmp')
 
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
-  -- NOTE: To add more keybindings I recommend you use nvim-cmp directly.
-  mapping = {
-    -- `Enter` key to confirm completion. If you want to confirm without selecting the item, use this.
-    ['C-y'] = cmp.mapping.confirm({select = true}), -- default: <CR> = ... {select = false}
-                                                    -- Enter will only confirm the selected item. You need to select the item before pressing enter.
+    -- NOTE: To add more keybindings I recommend you use nvim-cmp directly.
+    mapping = {
+        -- `Enter` key to confirm completion. If you want to confirm without selecting the item, use this.
+        ['C-y'] = cmp.mapping.confirm({ select = true }), -- default: <CR> = ... {select = false}
+        -- Enter will only confirm the selected item. You need to select the item before pressing enter.
 
-    -- Ctrl+Space to trigger completion menu
-    ['<C-Space>'] = cmp.mapping.complete(),
+        -- Ctrl+Space to trigger completion menu
+        ['<C-Space>'] = cmp.mapping.complete(),
 
-    -- Navigate between snippet placeholder
-    ['<C-n>'] = cmp_action.luasnip_jump_forward(), -- default: '<C-f>'
-    ['<C-p>'] = cmp_action.luasnip_jump_backward(),-- default: '<C-b>'
-  }
+        -- Navigate between snippet placeholder
+        ['<C-n>'] = cmp_action.luasnip_jump_forward(),  -- default: '<C-f>'
+        ['<C-p>'] = cmp_action.luasnip_jump_backward(), -- default: '<C-b>'
+    }
 })
 
 --local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -94,7 +93,7 @@ cmp.setup({
 --})
 
 vim.diagnostic.config({
-  virtual_text = true
+    virtual_text = true
 })
 
 -- TODO:
@@ -106,9 +105,9 @@ vim.diagnostic.config({
 --
 -- v v v v
 --  v v v
---    v    
+--    v
 --
--- NOTE: 
+-- NOTE:
 -- [Source](https://github.com/VonHeikemen/lsp-zero.nvim#future-changesdeprecation-notice)
 -- > I would like to get rid of named preset in the future. It's better if you use the
 -- default preset, the minimal. I would advice against using the one called "recommended". Just
@@ -116,8 +115,8 @@ vim.diagnostic.config({
 --
 -- Future Changes/Deprecation notice
 -- Settings and functions that will change in case I feel forced to created a v3.x branch.
--- 
--- 
+--
+--
 -- set_lsp_keymaps will be removed in favor of .default_keymaps().
 -- manage_nvim_cmp will be removed in favor of .extend_cmp().
 -- setup_servers_on_start will be removed. LSP servers will need to be listed explicitly using .setup_servers().
