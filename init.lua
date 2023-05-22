@@ -16,7 +16,7 @@ require("gg")
 -- :s/<from>/<to>/g -- Find & Replace, all words after cursor.
 
 ---
---- OS Preferences
+--- OS PREFERENCES
 ---
 
 -- Set Dark Theme GTK for Linux
@@ -29,3 +29,10 @@ require("gg")
 -- gtk-application-prefer-dark-theme=1
 -- After that firefox and GTK apps were dark by default. It will likely require a restart of the application in the case of them already running.
 -- ```
+
+--
+-- GIT REFERENCES
+--
+
+-- git log -S <filename> 
+-- git add -p -- patch (selects hunk interactively to stage)

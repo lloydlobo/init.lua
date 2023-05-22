@@ -2,6 +2,8 @@
 -- PACKAGE MANAGER
 --
 
+-- NOTE: if you use NixOS don't install mason.nvim
+
 -- Prerquisites: 
 -- $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 --   ~/.local/share/nvim/site/pack/packer/start/packer.nvim
