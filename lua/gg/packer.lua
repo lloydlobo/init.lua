@@ -13,9 +13,19 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
+-- Tips:
+--
+-- Select region in <visual> mode and press `=` to align.
+--
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-end) -- `:so` to install -> `:PackerSync`
+  use {
+	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	  -- or                            , branch = '0.1.x',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+end) -- `:so` Shoutout! (source the file) -> `:PackerSync`
 
