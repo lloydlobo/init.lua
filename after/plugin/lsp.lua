@@ -5,10 +5,6 @@
 -- https://github.com/VonHeikemen/lsp-zero.nvim#usage
 local lsp = require('lsp-zero').preset({})
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-end)
-
 -- NOTE: `.ensure_installed()` will be removed. Use the module mason-lspconfig to install LSP servers.
 lsp.ensure_installed({ 'tsserver', 'eslint', 'lua_ls', 'rust_analyzer',})
 
@@ -36,6 +32,32 @@ lsp.set_sign_icons({
   hint = 'H', -- ⚑
   info = 'I' -- »
 })
+
+lsp.on_attach(function(client, bufnr)
+	print("help")
+ local opts = {buffer = bufnr, remap = false}
+
+  -- lsp.default_keymaps({buffer = bufnr})
+  -- OR
+  -- Custom mappings: ... [Quickfix List] References.
+  vim.keymap.set("n", "gd", function () vim.lsp.buf.definition() end, opts) -- [g]o to [d]efinition.
+  vim.keymap.set("n", "K", function () vim.lsp.buf.hover() end, opts) -- hover symbol overview under cursor (Shift+k).
+  vim.keymap.set("n", "<leader>vws", function () vim.lsp.buf.workspace_symbol()end, opts) -- [v]im [w]orkspace [s]ymbol.
+  vim.keymap.set("n", "<leader>vd", function () vim.diagnostic.open_float() end, opts) -- [v]im [d]iagnostic.
+  vim.keymap.set("n", "[d", function () vim.diagnostic.goto_next() end, opts) -- go to next [d]iagnostic.
+  vim.keymap.set("n", "]d", function () vim.diagnostic.goto_prev() end, opts) -- go to previous [d]iagnostic.
+  vim.keymap.set("n", "<leader>vca", function () vim.lsp.buf.code_action() end, opts) -- [v]im [c]ode [a]ction.
+  vim.keymap.set("n", "<leader>vrr", function () vim.lsp.buf.references() end, opts) -- [v]im [r]eferences [r].
+  vim.keymap.set("n", "<leader>vrn", function () vim.lsp.buf.rename() end, opts) -- [v]im [r]ename [n]ame.
+
+  -- FIXME: Doesn't work for lua.
+  -- signature_help()                                *vim.lsp.buf.signature_help()*
+  --     Displays signature information about the symbol under the cursor in a
+  --     floating window.
+  vim.keymap.set("i", "<C-h>", function () vim.lsp.buf.signature_help() end, opts)
+  -- FIXME: Doesn't work for lua.
+
+end)
 
 lsp.setup()
 
