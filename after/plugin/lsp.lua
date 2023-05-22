@@ -27,14 +27,16 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 -- Defines the sign icons that appear in the gutter.
 lsp.set_sign_icons({
-  error = 'E',-- ✘
-  warn = 'W',-- ▲
+  error = 'E', -- ✘
+  warn = 'W', -- ▲
   hint = 'H', -- ⚑
   info = 'I' -- »
 })
 
+-- Attaches on every single buffer that has a lsp associated with it.
+-- Remap only works on the current buffer you are on.
+-- If something isn't a buffer, vim will still try vim's method to jump on definition without the need of LSP.
 lsp.on_attach(function(client, bufnr)
-	print("help")
  local opts = {buffer = bufnr, remap = false}
 
   -- lsp.default_keymaps({buffer = bufnr})
@@ -49,13 +51,10 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vca", function () vim.lsp.buf.code_action() end, opts) -- [v]im [c]ode [a]ction.
   vim.keymap.set("n", "<leader>vrr", function () vim.lsp.buf.references() end, opts) -- [v]im [r]eferences [r].
   vim.keymap.set("n", "<leader>vrn", function () vim.lsp.buf.rename() end, opts) -- [v]im [r]ename [n]ame.
-
-  -- FIXME: Doesn't work for lua.
+  -- FIXME: Doesn't work. -- See [Reference](lsp.txt)
   -- signature_help()                                *vim.lsp.buf.signature_help()*
-  --     Displays signature information about the symbol under the cursor in a
-  --     floating window.
+  --     Displays signature information about the symbol under the cursor in a floating window.
   vim.keymap.set("i", "<C-h>", function () vim.lsp.buf.signature_help() end, opts)
-  -- FIXME: Doesn't work for lua.
 
 end)
 

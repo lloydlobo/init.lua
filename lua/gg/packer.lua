@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
   }
 
   use({
-	  'rose-pine/neovim', 
+	  'rose-pine/neovim',
 	  as = 'rose-pine',
 	  config = function()
 	    -- vim.cmd [[set bg=dark]]
