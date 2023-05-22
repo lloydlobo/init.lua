@@ -1,7 +1,7 @@
 --
 -- LEADER KEY
 --
-vim.g.mapleader = " " -- (Space as Leader Key)
+vim.g.mapleader = " "                         -- (Space as Leader Key)
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- <normal> -> `<leader>+p+v` -> `:Ex` (Project view -> Opens Netrw Explorer)
 
@@ -38,9 +38,21 @@ vim.keymap.set("i", "<C-c>", "<Esc>") -- C-c to exit. (old habits die hard)
 
 vim.keymap.set("n", "Q", "<nop>")     -- Never press Q.
 
+
+
+-- Edit file in a separate Zellij terminal pane.
+local function open_zellij_file(filename)
+    vim.cmd("!zellij edit " .. filename)
+end
+
+vim.keymap.set("n", "<C-f>ze", function()
+    vim.cmd("!tree") -- Show files tree in current directory.
+    local filename = vim.fn.input("zellij edit <filename> ")
+    open_zellij_file(filename)
+end)
+
+-- TODO: -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- NOTE: Use tree for now.
---
---vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<C-f>t", "<cmd>!tree<CR>") -- Show directories file tree structure.
 vim.keymap.set("n", "<C-f>d", "<cmd>!fd<CR>")   -- List all files in current directory.
 vim.keymap.set("n", "<C-f>d", "<cmd>!zellij run -- <CR>")

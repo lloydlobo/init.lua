@@ -2,7 +2,7 @@ vim.opt.guicursor = "" -- Fat cursor also for insert mode.
 
 -- OR use -- if true then   end
 
-local show_numbers = false             -- NOTE: toggle this to show numbers.
+local show_numbers = false            -- NOTE: toggle this to show numbers.
 vim.opt.nu = show_numbers             -- Set numbers in gutter.
 vim.opt.relativenumber = show_numbers -- Use relative numbers in gutter.
 
