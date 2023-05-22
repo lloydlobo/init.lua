@@ -27,9 +27,13 @@ require('lualine').setup({
         --fmt = string.lower, -- upper | lower
     },
     sections = {
-        lualine_a = { { 'mode', fmt = function(str) return str:sub(1, 1) end } }, -- First char only.
+        lualine_a = {
+            -- use_mode_colors = false,
+            { 'mode', fmt = function(str) return str:sub(1, 1) end }, -- First char only.
+            --{ 'datetime', style = 'default' },                                     -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
+        },
         lualine_c = {
-            { 'filename', },
+            -- { 'filename', },
             {
                 loaded_buffer_count,                     -- Display number of loaded buffers.
                 color = { fg = "violet", gui = "bold" }, --color = nil,
@@ -40,6 +44,7 @@ require('lualine').setup({
                     close_all_buffers_except_current()
                 end,
             },
+            { 'buffers', max_length = vim.o.columns * 2 / 3, mode = 2 },          -- hide_filename_extension = false, show_modified_status = true,
         },
     }
 })
