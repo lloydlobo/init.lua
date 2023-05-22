@@ -1,9 +1,16 @@
+--
+-- COLORSCHEME
+--
+
+vim.opt.termguicolors = true
+vim.opt.background = 'dark'
+
 -- 1. Sets color scheme
 -- 2. Sets transparant background.
-
 function ColorMyPencils(color)
-	color = color or "rose-pine-moon" -- fallback to default `rose-pine` if no `color`.
+	color = color or "rose-pine-main" -- fallback to default `rose-pine` if no `color`.
 	vim.cmd.colorscheme(color) -- Sets colorscheme.
+	-- vim.opt.background = 'dark'
 
 	--
 	-- `0` sets global space for every window. `Normal` is for vim.
