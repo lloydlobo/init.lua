@@ -1,7 +1,7 @@
 require("gg")
 vim.cmd [[set bg=dark]]
 print("hello from nvim/init.lua") -- debug.
-vim.cmd [[colorscheme rose-pine-moon]]
+--vim.cmd [[colorscheme rose-pine-moon]]
 
 --
 -- CHEATSHEET

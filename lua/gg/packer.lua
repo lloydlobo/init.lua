@@ -36,4 +36,6 @@ return require('packer').startup(function(use)
 	    -- vim.cmd('set bg=dark')
 	  end
   })
+
+  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 end) -- `:so` Shoutout! (source the file) -> `:PackerSync`
