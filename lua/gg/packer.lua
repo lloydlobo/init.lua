@@ -32,10 +32,12 @@ return require('packer').startup(function(use)
 	  as = 'rose-pine',
 	  config = function()
 	    -- vim.cmd [[set bg=dark]]
-	    vim.cmd('colorscheme rose-pine-moon')
+	    --vim.cmd('colorscheme rose-pine')
 	    -- vim.cmd('set bg=dark')
 	  end
   })
 
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  use('nvim-treesitter/playground') -- `TSPlaygroundToggle` -> (view AST).
+
 end) -- `:so` Shoutout! (source the file) -> `:PackerSync`
