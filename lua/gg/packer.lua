@@ -32,7 +32,7 @@ return require('packer').startup(function(use)
 	  as = 'rose-pine',
 	  config = function()
 	    -- vim.cmd [[set bg=dark]]
-	    --vim.cmd('colorscheme rose-pine')
+	    vim.cmd('colorscheme rose-pine')
 	    -- vim.cmd('set bg=dark')
 	  end
   })
