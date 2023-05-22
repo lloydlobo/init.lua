@@ -24,6 +24,23 @@ vim.keymap.set("n", "<leader>gg", function ()
     vim.cmd([[:terminal gitui]]) -- Open gitui in a terminal buffer.
 end)
 
+vim.keymap.set("x", "<leader>p", "\"_dP") -- Retain highlighted copied buffer while pasting over another term.
+
+-- system clipboard. yank and Ctrl+v. Separate buffers to hold clipboard. @asbjornHaland.
+-- `y/Y` only for vim AND `<leader> + y/Y` for system clipboard.
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", "\"+Y")
+
+-- Deleting to void register. 
+vim.keymap.set("n" ,"<leader>d", "\"_d")
+vim.keymap.set("v" ,"<leader>d", "\"_d")
+
+-- eg: vertical edit mode, doesn't save changes vertically, Escape does
+vim.keymap.set("i" ,"<C-c>", "<Esc>") -- C-c to exit.
+
+
+-- EOF --
 
 -- [0 to LSP] 25:25 minute mark
 --
