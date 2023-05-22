@@ -3,8 +3,7 @@
 --
 
 -- NOTE: if you use NixOS don't install mason.nvim
--- Prerquisites:
--- $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+-- Prerquisites: $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 --   ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 -- [Source](https://github.com/wbthomason/packer.nvim#quickstart)
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
@@ -41,7 +40,13 @@ return require('packer').startup(function(use)
         end
     })
 
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    use({
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    })                                   -- use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')    -- `TSPlaygroundToggle` -> (view AST).
     use('ThePrimeagen/harpoon')          -- Getting you where you want with the fewest keystrokes.
     use({
@@ -84,8 +89,6 @@ return require('packer').startup(function(use)
         'nvim-lualine/lualine.nvim', -- See `:help lualine.txt`
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     })
-
-
     use("folke/zen-mode.nvim")
     --use("github/copilot.vim")
     use("eandrju/cellular-automaton.nvim")
