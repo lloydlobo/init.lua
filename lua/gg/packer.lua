@@ -27,5 +27,13 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use({
+	  'rose-pine/neovim', 
+	  as = 'rose-pine',
+	  config = function()
+	    -- vim.cmd [[set bg=dark]]
+	    vim.cmd('colorscheme rose-pine-moon')
+	    -- vim.cmd('set bg=dark')
+	  end
+  })
 end) -- `:so` Shoutout! (source the file) -> `:PackerSync`
-
