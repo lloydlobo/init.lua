@@ -37,16 +37,16 @@ require('lualine').setup({
             {
                 loaded_buffer_count,                     -- Display number of loaded buffers.
                 color = { fg = "violet", gui = "bold" }, --color = nil,
-                icon = "buf",
+                icon = "[buf✘]",
                 icons_enabled = true,
-                on_click = function()
-                    print("closing all buffers except current?")
-                    close_all_buffers_except_current()
-                end,
+                on_click = function() close_all_buffers_except_current() end,
             },
-            { 'buffers', max_length = vim.o.columns * 2 / 3, mode = 2 },          -- hide_filename_extension = false, show_modified_status = true,
+            { 'buffers', max_length = vim.o.columns * 2 / 3, mode = 2 }, -- hide_filename_extension = false, show_modified_status = true,
         },
-    }
+    },
+    --tabline = { lualine_a = { 'buffers' }, lualine_b = { 'branch' }, lualine_c = { 'filename' }, lualine_x = {}, lualine_y = {}, lualine_z = { 'tabs' } },
+    --winbar = { lualine_a = {}, lualine_b = {}, lualine_c = { 'filename' }, lualine_x = {}, lualine_y = {}, lualine_z = {} },
+    --inactive_winbar = { lualine_a = {}, lualine_b = {}, lualine_c = { 'filename' }, lualine_x = {}, lualine_y = {}, lualine_z = {} },
 })
 
 
@@ -56,3 +56,10 @@ require('lualine').setup({
 -- | A | B | C                             X | Y | Z |
 -- +-------------------------------------------------+
 -- Each sections holds its components e.g. Vim's current mode.
+--
+-- Buffers
+--
+--
+--  :LualineBuffersJump 2  " Jumps to 2nd buffer in buffers component.
+--  :LualineBuffersJump $  " Jumps to last buffer in buffers component.
+--  :LualineBuffersJump! 3  " Attempts to jump to 3rd buffer, if it exists.
