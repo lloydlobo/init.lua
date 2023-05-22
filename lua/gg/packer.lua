@@ -51,11 +51,12 @@ return require('packer').startup(function(use)
             { "nvim-treesitter/nvim-treesitter" }
         }
     })
-    use('mbbill/undotree') -- undo history visualizer.
+    use('mbbill/undotree')                         -- undo history visualizer.
     use('tpope/vim-fugitive')
-    use('nvim-treesitter/nvim-treesitter-context')
+    use('lewis6991/gitsigns.nvim')                 -- Adds git releated signs to the gutter, as well as utilities for managing changes
+    use('nvim-treesitter/nvim-treesitter-context') -- sticky parent function/module/.. name on scroll.
 
-    use {
+    use({
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         requires = {
@@ -76,10 +77,10 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
         }
-    }
+    })
 
     use("folke/zen-mode.nvim")
     use("github/copilot.vim")
     use("eandrju/cellular-automaton.nvim")
     use("laytan/cloak.nvim") --  overlay *'s (or any other character) over defined patterns in defined files. It also disables 'cmp' for the buffer(if it is installed).
-end) -- `:so` Shoutout! (source the file) -> `:PackerSync`
+end)                         -- `:so` Shoutout! (source the file) -> `:PackerSync`
