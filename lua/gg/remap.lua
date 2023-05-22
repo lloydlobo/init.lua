@@ -3,10 +3,6 @@
 --
 vim.g.mapleader = " " -- (Space as Leader Key)
 
---
--- LEADER KEYBINDINGS
---
-
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- <normal> -> `<leader>+p+v` -> `:Ex` (Project view -> Opens Netrw Explorer)
 
 -- PERF: How to handle moving multiple lines up?
@@ -69,7 +65,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Search and replace string under cursor globally.
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>") -- Make file executable.
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }) -- Make file executable.
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 -- Edit [v]im [p]lugins [p]acker/[p]lugin file.
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/gg/packer.lua<CR>")
