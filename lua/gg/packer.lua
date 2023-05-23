@@ -40,13 +40,14 @@ return require('packer').startup(function(use)
         end
     })
 
-    use({
-        'nvim-treesitter/nvim-treesitter',
-        run = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-            ts_update()
-        end,
-    })                                   -- use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    --use({
+    --    'nvim-treesitter/nvim-treesitter',
+    --    run = function()
+    --        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+    --        ts_update()
+    --    end,
+    --})
+    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')    -- `TSPlaygroundToggle` -> (view AST).
     use('ThePrimeagen/harpoon')          -- Getting you where you want with the fewest keystrokes.
     use({
@@ -83,6 +84,10 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     })
+
+    -- comments
+    use({ "JoosepAlviste/nvim-ts-context-commentstring", })
+
 
     use({
         -- Set lualine as statusline
