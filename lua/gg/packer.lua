@@ -66,8 +66,15 @@ return require('packer').startup(function(use)
             { "nvim-treesitter/nvim-treesitter" }
         }
     })
-    use('mbbill/undotree')                         -- undo history visualizer.
+    use('mbbill/undotree') -- undo history visualizer.
+
+    -- Git related plugins.
     use('tpope/vim-fugitive')
+    use('tpope/vim-rhubarb')
+
+    -- Detect tabstop and shiftwidth automatically.
+    use('tpope/vim-sleuth')
+
     use('lewis6991/gitsigns.nvim')                 -- Adds git releated signs to the gutter, as well as utilities for managing changes
     use('nvim-treesitter/nvim-treesitter-context') -- sticky parent function/module/.. name on scroll.
 
@@ -79,11 +86,15 @@ return require('packer').startup(function(use)
             {
                 'neovim/nvim-lspconfig',
                 requires = {
-                    'folke/neodev.nvim',                                                                 -- Additional lua configuration, makes nvim stuff amazing!
-                },
-            },                                                                                           -- Required
-            { 'williamboman/mason.nvim',          run = function() pcall(vim.cmd, 'MasonUpdate') end, }, -- Optional
-            { 'williamboman/mason-lspconfig.nvim' },                                                     -- Optional
+                    { 'williamboman/mason.nvim',          run = function() pcall(vim.cmd, 'MasonUpdate') end, }, -- Optional
+                    { 'williamboman/mason-lspconfig.nvim' },                                                     -- Optional
+
+                    { 'folke/neodev.nvim', },                                                                    -- Additional lua configuration, makes nvim stuff amazing!
+                    -- Useful status updates for LSP
+                    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+                    { 'j-hui/fidget.nvim',                opts = {} },
+                }, -- Required
+            },
 
             -- Autocompletion
             {
