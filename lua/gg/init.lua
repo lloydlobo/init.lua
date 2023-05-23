@@ -31,6 +31,10 @@ autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
+-- NOTE: Where should I put you?
+-- Esc twice to get to normal mode
+vim.cmd([[tnoremap <esc><esc> <C-\><C-N>]])
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25

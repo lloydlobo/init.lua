@@ -64,7 +64,9 @@ vim.keymap.set('n', '<leader>tz', function()
     --vim.cmd([["!zellij run -- " + prompt]])
 end) -- <normal> -> `<leader>+p+s` -> `:Telescope grep_string` (Grep search term project).
 
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "[f]ormat buffer" })
+--vim.keymap.set("n", "<leader>F", [[0o<C-[>k0J80l3bea<CR><C-[>0]], { desc = "[f]ormat comment line" }) --[Q] 0o^[k0J80l3bea^M^[0
+vim.keymap.set("n", "<leader>F", "0o<C-[>k0J080l3bea<CR><C-[>0", { desc = "[F]ormat comment line" }) --[Q] 0o^[k0J80l3bea^M^[0
 
 -- Display the [count] previous/next error in the list that includes a file
 -- name. If there are no file names at all, go to the [count] previous/next error.
@@ -87,6 +89,8 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/gg/packer.lua<CR>"
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+
 
 -- EOF --
 
